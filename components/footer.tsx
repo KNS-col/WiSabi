@@ -34,7 +34,7 @@ export function Footer() {
             </p>
           </div>
 
-          <div>
+          <div className="text-center">
             <h3 className="text-sm font-bold uppercase tracking-wider text-primary mb-4">
               Company
             </h3>
@@ -57,7 +57,7 @@ export function Footer() {
             </ul>
           </div>
 
-          <div>
+          <div className="text-center">
             <h3 className="text-sm font-bold uppercase tracking-wider text-primary mb-4">
               Services
             </h3>

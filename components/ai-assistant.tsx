@@ -284,7 +284,7 @@ export function AIAssistant() {
   const { flow, flowIndex, revealedSteps, typingStep } = useChatFlow(FLOWS);
 
   return (
-    <section id="ai-assistant" className="section-padding bg-black scroll-mt-20 md:scroll-mt-24">
+    <section id="ai-assistant" className="section-padding bg-black scroll-mt-20 md:scroll-mt-24 overflow-hidden">
       <div className="container-custom">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Copy + feature grid */}

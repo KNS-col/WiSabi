@@ -62,6 +62,13 @@ export function Navbar() {
   }, [pathname]);
 
   useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
+
+  useEffect(() => {
     if (!servicesOpen) return;
 
     const handleClickOutside = (e: MouseEvent) => {
@@ -216,70 +223,72 @@ export function Navbar() {
       </nav>
 
       {mobileOpen && (
-        <div className="lg:hidden border-t border-light-gray bg-white animate-fade-in max-h-[calc(100vh-4rem)] overflow-y-auto">
-          <div className="container-custom px-4 py-4 flex flex-col gap-1">
-            {navLinks.map((link) =>
-              link.href === "/services" ? (
-                <div key={link.href}>
-                  <div className="flex items-center">
-                    <Link
-                      href="/services"
-                      className={cn(
-                        "flex-1 px-4 py-3 rounded-lg text-base font-semibold transition-colors",
-                        pathname === "/services"
-                          ? "text-primary bg-primary/5"
-                          : "text-black hover:bg-off-white"
-                      )}
-                    >
-                      {link.label}
-                    </Link>
-                    <button
-                      type="button"
-                      onClick={() => setMobileServicesOpen((open) => !open)}
-                      aria-expanded={mobileServicesOpen}
-                      aria-label="Toggle services submenu"
-                      className="p-3 rounded-lg hover:bg-off-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-                    >
-                      <ChevronDown
+        <div className="lg:hidden fixed inset-x-0 top-16 md:top-18 bottom-0 z-40 bg-white overflow-y-auto animate-fade-in pb-[env(safe-area-inset-bottom)]">
+          <div className="container-custom px-4 py-6 min-h-full flex flex-col">
+            <div className="flex flex-col gap-2 pt-4">
+              {navLinks.map((link) =>
+                link.href === "/services" ? (
+                  <div key={link.href}>
+                    <div className="flex items-center">
+                      <Link
+                        href="/services"
                         className={cn(
-                          "h-4 w-4 text-black transition-transform",
-                          mobileServicesOpen && "rotate-180"
+                          "flex-1 px-4 py-4 rounded-lg text-lg font-semibold transition-colors",
+                          pathname === "/services"
+                            ? "text-primary bg-primary/5"
+                            : "text-black hover:bg-off-white"
                         )}
-                        aria-hidden="true"
-                      />
-                    </button>
-                  </div>
-                  {mobileServicesOpen && (
-                    <div className="pl-4 pb-2 flex flex-col gap-0.5 animate-fade-in">
-                      {services.map((service) => (
-                        <Link
-                          key={service.id}
-                          href={`/services/${service.id}`}
-                          className="px-4 py-2.5 rounded-lg text-sm text-dark-gray hover:bg-off-white hover:text-primary transition-colors"
-                        >
-                          {service.title}
-                        </Link>
-                      ))}
+                      >
+                        {link.label}
+                      </Link>
+                      <button
+                        type="button"
+                        onClick={() => setMobileServicesOpen((open) => !open)}
+                        aria-expanded={mobileServicesOpen}
+                        aria-label="Toggle services submenu"
+                        className="p-3 rounded-lg hover:bg-off-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                      >
+                        <ChevronDown
+                          className={cn(
+                            "h-5 w-5 text-black transition-transform",
+                            mobileServicesOpen && "rotate-180"
+                          )}
+                          aria-hidden="true"
+                        />
+                      </button>
                     </div>
-                  )}
-                </div>
-              ) : (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={cn(
-                    "px-4 py-3 rounded-lg text-base font-semibold transition-colors",
-                    pathname === link.href
-                      ? "text-primary bg-primary/5"
-                      : "text-black hover:bg-off-white"
-                  )}
-                >
-                  {link.label}
-                </Link>
-              )
-            )}
-            <div className="pt-2 px-4 flex flex-col gap-2">
-              <Button asChild className="w-full">
+                    {mobileServicesOpen && (
+                      <div className="pl-4 pb-2 flex flex-col gap-0.5 animate-fade-in">
+                        {services.map((service) => (
+                          <Link
+                            key={service.id}
+                            href={`/services/${service.id}`}
+                            className="px-4 py-2.5 rounded-lg text-base text-dark-gray hover:bg-off-white hover:text-primary transition-colors"
+                          >
+                            {service.title}
+                          </Link>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className={cn(
+                      "px-4 py-4 rounded-lg text-lg font-semibold transition-colors",
+                      pathname === link.href
+                        ? "text-primary bg-primary/5"
+                        : "text-black hover:bg-off-white"
+                    )}
+                  >
+                    {link.label}
+                  </Link>
+                )
+              )}
+            </div>
+            <div className="mt-auto pt-6 px-4 flex flex-col gap-2">
+              <Button asChild className="w-full" size="lg">
                 <a
                   href={siteConfig.expressInterestUrl}
                   target="_blank"
