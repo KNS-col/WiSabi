@@ -1,8 +1,3 @@
-// Entry point for Plesk's Node.js hosting on Windows/IIS (via the iisnode
-// module, wired up in web.config). iisnode starts this file directly and
-// expects it to listen on process.env.PORT (a named pipe path under
-// iisnode, not a plain TCP port) — it doesn't run `npm start` / `next
-// start` itself.
 const { createServer } = require("http");
 const { parse } = require("url");
 const next = require("next");

@@ -287,7 +287,6 @@ export function AIAssistant() {
     <section id="ai-assistant" className="section-padding bg-black scroll-mt-20 md:scroll-mt-24 overflow-hidden">
       <div className="container-custom">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Copy + feature grid */}
           <div>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-5 heading-accent">
               AI Knowledge Base
@@ -317,14 +316,12 @@ export function AIAssistant() {
             </div>
           </div>
 
-          {/* Chat flow illustration */}
           <div className="relative">
             <div
               className="absolute -inset-6 bg-primary/20 blur-3xl rounded-full opacity-40"
               aria-hidden="true"
             />
             <div className="relative rounded-2xl border border-white/10 bg-[#0b0b0c] shadow-2xl overflow-hidden flex flex-col">
-              {/* Header */}
               <div className="flex flex-col items-center text-center gap-1 px-6 pt-6 pb-4 border-b border-white/10">
                 <div className="h-10 w-10 rounded-full bg-primary/15 border border-primary/25 flex items-center justify-center mb-1">
                   <Bot className="h-5 w-5 text-primary" aria-hidden="true" />
@@ -333,7 +330,6 @@ export function AIAssistant() {
                 <p className="text-xs text-white/50">{flow.channel}</p>
               </div>
 
-              {/* Chat thread */}
               <div
                 className="p-5 md:p-6 flex flex-col justify-center gap-3 min-h-[360px] sm:min-h-[380px]"
                 role="img"
@@ -345,12 +341,10 @@ export function AIAssistant() {
                 {typingStep && <TypingBubble side={typingStep.side ?? "left"} />}
               </div>
 
-              {/* Footer */}
               <div className="px-5 md:px-6 pb-4 pt-3 border-t border-white/10 text-center">
                 <p className="text-[11px] text-white/30">{FOOTER}</p>
               </div>
 
-              {/* Flow indicator */}
               <div className="flex items-center justify-center gap-1.5 pb-5">
                 {FLOWS.map((f, i) => (
                   <span
